@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greetings Widget</title>
+    <style>
+      body { font-variant-caps: all-petite-caps; font-family: sans-serif; }
+      .widget {
+          padding: 10px;
+          color: #000000;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          max-width: 95%;
+          margin: auto;
+          border: 3px solid #000000;
+          border-radius: 5px;
+          box-shadow: 2px 2px 1px 0px #000000;
+      }
+      .greet { font-size: 2.5em; text-align: center; margin-bottom: 5px; }
+      .date { font-family: monospace; font-size: 1.5em; margin-bottom: 5px; }
+      .clock { font-family: monospace; font-size: 2em; display: flex; align-items: center; }
+      .time { display: inline-block; }
+      .colon { font-size: 1em; margin: 0 2px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="widget">
+        <div class="greet" id="greet"></div>
+        <div class="date" id="date"></div>
+        <div class="clock">
+          <div class="time" id="hour"></div>
+          <div class="colon">:</div>
+          <div class="time" id="min"></div>
+          <div class="colon">:</div>
+          <div class="time" id="sec"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function displayGreetings(today) {
+          const hrs = today.getHours();
+          const name = "Luiz G G Fonseca";
+          let greet = '';
+          
+          if (hrs < 12) greet = 'Bom dia ' + name;
+          else if (hrs >= 12 && hrs <= 17) greet = 'Boa tarde ' + name;
+          else greet = 'Boa noite ' + name;
+          
+          document.getElementById('greet').innerHTML = greet;
+      }
+
+      function displayDate(today) {
+          const days = ['Dom.', '2a-feira', '3a-feira', '4a-feira', '5a-feira', '6a-feira', 'Sábado'];
+          const monthNames = ["Jan.", "Fev.", "Mar.", "Abr.", "Mai.", "Jun.", "Jul.", "Ago.", "Set.", "Out.", "Nov.", "Dez."];
+          
+          const dayName = days[today.getDay()];
+          const monthName = monthNames[today.getMonth()];
+          const date = today.getDate();
+          const year = today.getFullYear();
+          
+          document.getElementById('date').innerHTML = `${dayName}, ${monthName} ${date} ${year}`;
+      }
+
+      function padZeros(num) {
+          return num < 10 ? '0' + num : num;
+      }
+
+      function displayClock(today) {
+          let h = today.getHours();
+          const m = padZeros(today.getMinutes());
+          let s = padZeros(today.getSeconds());
+          
+          // AM/PM Logic
+          const suffix = h >= 12 ? " pm" : " am";
+          
+          // Formato 12h
+          if (h > 12) h -= 12;
+          else if (h === 0) h = 12;
+          
+          h = padZeros(h);
+          s += suffix;
+
+          document.getElementById('hour').innerHTML = h;
+          document.getElementById('min').innerHTML = m;
+          document.getElementById('sec').innerHTML = s;
+      }
+
+      function displayWidget() {
+          const today = new Date();
+          displayGreetings(today);
+          displayDate(today);
+          displayClock(today);
+          setTimeout(displayWidget, 1000); // 1000ms é suficiente para relógio de segundos
+      }
+
+      displayWidget();
+    </script>
+  </body>
+</html>
