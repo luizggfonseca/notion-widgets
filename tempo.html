@@ -8,20 +8,28 @@
         body {
             margin: 0;
             padding: 0;
-            display: flex;       /* Centraliza horizontalmente */
-            justify-content: center; 
-            align-items: center; /* Centraliza verticalmente */
-            height: 100vh;       /* Altura total da tela */
-            background-color: transparent; /* Fundo transparente para integrar melhor */
+            background-color: #ffffff; /* Fundo branco temporário para testar visibilidade */
             font-family: sans-serif;
+        }
+        
+        /* Container para segurar o widget */
+        .container-widget {
+            width: 100%;
+            max-width: 600px; /* Limita a largura para não ficar gigante */
+            margin: 50px auto; /* Centraliza na tela */
+            display: block;
         }
     </style>
 </head>
 <body>
 
-    <a class="weatherwidget-io" href="https://forecast7.com/pt/n22d80n45d19/guaratingueta/" data-label_1="Guaratinguetá, SP" data-label_2="Previsão do tempo" data-theme="original" >Guaratinguetá, SP Previsão do tempo</a>
-    <script>
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-    </script>
-    </body>
+    <div class="container-widget">
+        <a class="weatherwidget-io" href="https://forecast7.com/pt/n22d80n45d19/guaratingueta/" data-label_1="Guaratinguetá, SP" data-label_2="Previsão do tempo" data-theme="original" >Guaratinguetá, SP Previsão do tempo</a>
+        
+        <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
+    </div>
+
+</body>
 </html>
